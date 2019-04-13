@@ -8,7 +8,7 @@
     <span class="uppercase">
         <i class="ion ion-ios-email-outline"></i> {{ trans('dashboard.subscribers.subscribers') }}
     </span>
-    @if($current_user->isAdmin && $enable_subscribers)
+    @if($currentUser->isAdmin && $enableSubscribers)
     <a class="btn btn-md btn-success pull-right" href="{{ cachet_route('dashboard.subscribers.create') }}">
         {{ trans('dashboard.subscribers.add.title') }}
     </a>
@@ -18,7 +18,13 @@
 <div class="content-wrapper header-fixed">
     <div class="row">
         <div class="col-sm-12">
-            <p class="lead">{{ trans('dashboard.subscribers.description') }}</p>
+            <p class="lead">
+                @if($enableSubscribers)
+                {{ trans('dashboard.subscribers.description') }}
+                @else
+                {{ trans('dashboard.subscribers.description_disabled') }}
+                @endif
+            </p>
 
             <div class="striped-list">
                 @foreach($subscribers as $subscriber)
